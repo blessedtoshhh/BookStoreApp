@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ink and Leather</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Ink and Leather</h1>
+    <nav>
+      <button onclick="showSection('browse')">Browse Books</button>
+      <button onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</button>
+      <button onclick="showSection('login')">Login</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Browse -->
+    <section id="browse" class="section">
+      <h2>Available Books</h2>
+      <input type="text" id="search-input" placeholder="Search by title or author..." oninput="searchBooks()" />
+      <div id="book-list"></div>
+    </section>
+
+    <!-- Cart -->
+    <section id="cart" class="section hidden">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+      <button onclick="checkout()">Checkout</button>
+    </section>
+
+    <!-- Login -->
+    <section id="login" class="section hidden">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p id="login-message"></p>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
