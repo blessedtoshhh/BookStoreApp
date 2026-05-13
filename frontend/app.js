@@ -10,8 +10,12 @@ function showSection(id) {
 
 // --- Books ---
 
-async function loadBooks(query = "") {
-  const url = query ? `${API}/books/?q=${encodeURIComponent(query)}` : `${API}/books/`;
+async function loadBooks(query = "", type = "all") {
+  let url = `${API}/books/`;
+  if (query) {
+    url += `?q=${encodeURIComponent(query)}&type=${type}`;
+  }
+  
   const res = await fetch(url);
   const books = await res.json();
   const list = document.getElementById("book-list");
@@ -19,16 +23,34 @@ async function loadBooks(query = "") {
     <div class="book-card">
       <div>
         <strong>${b.title}</strong> by ${b.author}<br/>
-        $${b.price.toFixed(2)} &mdash; ${b.stock_quantity} in stock
+        $${b.price.toFixed(2)} - ${b.stock_quantity} in stock
       </div>
-      <button onclick="addToCart(${b.id})">Add to Cart</button>
+
+      <div>
+        ${
+          b.stock_quantity <= 0
+            ? `<span style="color:red;font-weight:bold;">Out of Stock</span`
+            : b.stock_quantity <= 2
+              ? `<span style="color:orange;"Low Stock</span>`
+              :`span style="color green;">In Stock</span>`
+      }
     </div>
-  `).join("");
+
+    <button
+      onclick="addToCart(${b.id})"
+      ${b.stock_quantity <= 0 ? "disabled" : ""}
+    >
+      $b.stock_quantity <= 0 ? "Unavailable" : "Add to Cart"}
+    </button>
+  </div>
+`).join("");
 }
 
 function searchBooks() {
   const q = document.getElementById("search-input").value;
-  loadBooks(q);
+  const type = document.getElementById("search-type").value;
+
+  loadBooks(q, type);
 }
 
 // --- Cart ---

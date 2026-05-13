@@ -126,3 +126,11 @@ button[onclick="checkout()"] {
   cursor: pointer;
   margin-top: 1rem;
 }
+
+.search-bar select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}

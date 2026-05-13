@@ -22,9 +22,26 @@
     <!-- Browse -->
     <section id="browse" class="section">
       <h2>Available Books</h2>
-      <input type="text" id="search-input" placeholder="Search by title or author..." oninput="searchBooks()" />
-      <div id="book-list"></div>
-    </section>
+
+      <div class="search-bar">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search books..."
+      />
+
+      <select id="search-type">
+        <option value="all">All</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="category">Category</option>
+      </select>
+
+      <button onclick="searchBooks()">Search</button>
+    </div>
+
+    <div id="book-list"></div>
+  </section>
 
     <!-- Cart -->
     <section id="cart" class="section hidden">
