@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:5000";
+const API = "";
 let token = localStorage.getItem("token") || null;
 let userRole = localStorage.getItem("role") || null;
 
