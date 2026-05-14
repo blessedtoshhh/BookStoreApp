@@ -18,6 +18,7 @@ function applyRoleUI() {
   const isEmployee = userRole === "employee" || userRole === "manager";
   document.getElementById("nav-login").classList.toggle("hidden", !!token);
   document.getElementById("nav-logout").classList.toggle("hidden", !token);
+  document.getElementById("nav-reviews").classList.toggle("hidden", isEmployee);
   document.getElementById("nav-inventory").classList.toggle("hidden", !isEmployee);
   document.getElementById("nav-orders").classList.toggle("hidden", !isEmployee);
   document.getElementById("nav-staff-feedback").classList.toggle("hidden", !isEmployee);
