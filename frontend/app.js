@@ -11,6 +11,7 @@ function showSection(id) {
   if (id === "orders") loadAllOrders();
   if (id === "feedback") initFeedbackForm();
   if (id === "staff-feedback") loadStaffFeedback();
+  if (id === "reviews") loadPublicReviews();
 }
 
 function applyRoleUI() {
@@ -406,7 +407,7 @@ async function loadStaffFeedback(statusFilter) {
       </div>
       <p class="feedback-card-message">${escapeHtml(f.message)}</p>
       <div class="feedback-note-row">
-        <textarea class="internal-note-input" id="note-${f.id}" placeholder="Add internal note...">${escapeHtml(f.internal_note)}</textarea>
+        <textarea class="internal-note-input" id="note-${f.id}" placeholder="Add internal note... (shown publicly as 'Our Response' when marked Actioned)">${escapeHtml(f.internal_note)}</textarea>
       </div>
       <div class="feedback-actions">
         <small style="color:#aaa;">Received: ${f.created_at}</small>
@@ -446,6 +447,60 @@ async function saveFeedbackNote(id) {
     btn.after(indicator);
     setTimeout(() => indicator.remove(), 2000);
   }
+}
+
+// --- Public Reviews ---
+
+async function loadPublicReviews() {
+  const res = await fetch(`${API}/feedback/public`);
+  if (!res.ok) return;
+  const data = await res.json();
+  const { entries, avg, total } = data;
+
+  const summaryEl = document.getElementById("reviews-summary");
+  const listEl = document.getElementById("reviews-list");
+
+  if (!total) {
+    summaryEl.innerHTML = `<p style="color:#888;margin-bottom:1rem;">No reviews have been published yet. Be the first to share your experience!</p>`;
+    listEl.innerHTML = "";
+    return;
+  }
+
+  const starsFull = Math.round(avg);
+  summaryEl.innerHTML = `
+    <div class="reviews-hero">
+      <div class="reviews-hero-score">
+        <span class="reviews-avg-number">${avg}</span>
+        <span class="reviews-hero-stars">${"&#9733;".repeat(starsFull)}${"&#9734;".repeat(5 - starsFull)}</span>
+        <span class="reviews-hero-label">${total} published review${total !== 1 ? "s" : ""}</span>
+      </div>
+      <p class="reviews-hero-note">All reviews below have been read and acknowledged by our team. Responses marked with a reply icon reflect actions we've taken.</p>
+    </div>
+  `;
+
+  const categoryLabels = { general: "General", selection: "Book Selection", service: "Customer Service", website: "Website Experience", other: "Other" };
+
+  listEl.innerHTML = entries.map(f => `
+    <div class="review-card">
+      <div class="review-card-top">
+        <div class="review-meta">
+          <span class="review-author">${escapeHtml(f.name)}</span>
+          <span class="review-date">${f.created_at}</span>
+        </div>
+        <div class="review-right">
+          <span class="review-stars">${"&#9733;".repeat(f.rating)}${"&#9734;".repeat(5 - f.rating)}</span>
+          <span class="review-cat-badge">${categoryLabels[f.category] || f.category}</span>
+        </div>
+      </div>
+      <p class="review-message">${escapeHtml(f.message)}</p>
+      ${f.response ? `
+        <div class="store-response">
+          <span class="store-response-label">&#128172; Our Response</span>
+          <p class="store-response-text">${escapeHtml(f.response)}</p>
+        </div>
+      ` : ""}
+    </div>
+  `).join("");
 }
 
 function escapeHtml(str) {

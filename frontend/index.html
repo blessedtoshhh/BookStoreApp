@@ -13,6 +13,7 @@
     <nav>
       <button onclick="showSection('browse')">Browse Books</button>
       <button onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</button>
+      <button onclick="showSection('reviews')">Reviews</button>
       <button onclick="showSection('login')" id="nav-login">Login</button>
       <button onclick="showSection('feedback')" id="nav-feedback" class="hidden">Feedback</button>
       <button onclick="showSection('inventory')" id="nav-inventory" class="hidden">Inventory</button>
@@ -89,6 +90,13 @@
     <section id="orders" class="section hidden">
       <h2>All Orders</h2>
       <div id="orders-list"></div>
+    </section>
+
+    <!-- Public: Reviews -->
+    <section id="reviews" class="section hidden">
+      <h2>Customer Reviews</h2>
+      <div id="reviews-summary"></div>
+      <div id="reviews-list"></div>
     </section>
 
     <!-- Customer: Submit Feedback -->

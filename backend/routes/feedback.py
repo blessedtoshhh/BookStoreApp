@@ -66,6 +66,32 @@ def submit_feedback():
     return jsonify({"message": "Thank you for your feedback!"}), 201
 
 
+@feedback_bp.route("/public", methods=["GET"])
+def get_public_feedback():
+    entries = (
+        Feedback.query
+        .filter(Feedback.status.in_(["reviewed", "actioned"]))
+        .order_by(Feedback.created_at.desc())
+        .all()
+    )
+    result = []
+    for f in entries:
+        result.append({
+            "id": f.id,
+            "name": f.name or "Anonymous",
+            "rating": f.rating,
+            "category": f.category or "general",
+            "message": f.message,
+            "status": f.status,
+            "response": f.internal_note if f.status == "actioned" and f.internal_note else None,
+            "created_at": f.created_at.strftime("%B %d, %Y") if f.created_at else "",
+        })
+    total = Feedback.query.filter(Feedback.status.in_(["reviewed", "actioned"])).count()
+    all_ratings = [f.rating for f in Feedback.query.filter(Feedback.status.in_(["reviewed", "actioned"])).all()]
+    avg = round(sum(all_ratings) / len(all_ratings), 1) if all_ratings else None
+    return jsonify({"entries": result, "avg": avg, "total": total}), 200
+
+
 @feedback_bp.route("/", methods=["GET"])
 @jwt_required()
 def get_feedback():
