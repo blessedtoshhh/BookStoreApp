@@ -16,10 +16,8 @@ function showSection(id) {
 
 function applyRoleUI() {
   const isEmployee = userRole === "employee" || userRole === "manager";
-  const isCustomer = token && !isEmployee;
   document.getElementById("nav-login").classList.toggle("hidden", !!token);
   document.getElementById("nav-logout").classList.toggle("hidden", !token);
-  document.getElementById("nav-feedback").classList.toggle("hidden", !isCustomer);
   document.getElementById("nav-inventory").classList.toggle("hidden", !isEmployee);
   document.getElementById("nav-orders").classList.toggle("hidden", !isEmployee);
   document.getElementById("nav-staff-feedback").classList.toggle("hidden", !isEmployee);
@@ -460,8 +458,12 @@ async function loadPublicReviews() {
   const summaryEl = document.getElementById("reviews-summary");
   const listEl = document.getElementById("reviews-list");
 
+  const isCustomer = token && userRole === "customer";
+  const cta = document.getElementById("feedback-cta");
+  if (cta) cta.classList.toggle("hidden", !isCustomer);
+
   if (!total) {
-    summaryEl.innerHTML = `<p style="color:#888;margin-bottom:1rem;">No reviews have been published yet. Be the first to share your experience!</p>`;
+    summaryEl.innerHTML = `<p style="color:#888;margin-bottom:1rem;">No feedback has been published yet. Be the first to share your experience!</p>`;
     listEl.innerHTML = "";
     return;
   }

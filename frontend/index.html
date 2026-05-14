@@ -15,7 +15,6 @@
       <button onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</button>
       <button onclick="showSection('reviews')">Feedback</button>
       <button onclick="showSection('login')" id="nav-login">Login</button>
-      <button onclick="showSection('feedback')" id="nav-feedback" class="hidden">Leave Feedback</button>
       <button onclick="showSection('inventory')" id="nav-inventory" class="hidden">Inventory</button>
       <button onclick="showSection('orders')" id="nav-orders" class="hidden">Orders</button>
       <button onclick="showSection('staff-feedback')" id="nav-staff-feedback" class="hidden">Feedback</button>
@@ -94,9 +93,13 @@
 
     <!-- Public: Reviews -->
     <section id="reviews" class="section hidden">
-      <h2>Customer Reviews</h2>
+      <h2>Customer Feedback</h2>
       <div id="reviews-summary"></div>
       <div id="reviews-list"></div>
+      <div id="feedback-cta" class="hidden" style="margin-top:1.5rem;padding:1.2rem;background:#f0f4f8;border-radius:8px;text-align:center;">
+        <p style="margin-bottom:0.75rem;color:#444;">Had an experience with us? We'd love to hear from you.</p>
+        <button onclick="showSection('feedback')" style="background:#2c3e50;color:white;border:none;padding:0.6rem 1.4rem;border-radius:4px;cursor:pointer;font-size:1rem;">Leave Your Feedback</button>
+      </div>
     </section>
 
     <!-- Customer: Submit Feedback -->
