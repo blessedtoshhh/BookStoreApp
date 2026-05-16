@@ -9,8 +9,10 @@
 <body>
 
   <header>
-    <h1>Ink and Leather Bookstore</h1>
-    <nav>
+    <nav class="navbar"> 
+    <div class="logo">Ink and Leather Bookstore</div>
+    
+    <div class="nav-links">
       <button onclick="showSection('browse')">Browse Books</button>
       <button onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</button>
       <button onclick="showSection('reviews')" id="nav-reviews">Feedback</button>
@@ -19,8 +21,9 @@
       <button onclick="showSection('orders')" id="nav-orders" class="hidden">Orders</button>
       <button onclick="showSection('staff-feedback')" id="nav-staff-feedback" class="hidden">Manage Feedback</button>
       <button onclick="logout()" id="nav-logout" class="hidden">Logout</button>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 
   <main>
 
