@@ -487,7 +487,6 @@ async function loadLoginActivity() {
           <th>Timestamp</th>
           <th>Email</th>
           <th>Name</th>
-          <th>IP Address</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -497,7 +496,6 @@ async function loadLoginActivity() {
             <td>${escapeHtml(r.timestamp)}</td>
             <td>${escapeHtml(r.email)}</td>
             <td>${r.user_name ? escapeHtml(r.user_name) : "—"}</td>
-            <td><code>${escapeHtml(r.ip_address || "—")}</code></td>
             <td><span class="activity-badge ${r.success ? "badge-success" : "badge-fail"}">${r.success ? "Success" : "Failed"}</span></td>
           </tr>
         `).join("")}
