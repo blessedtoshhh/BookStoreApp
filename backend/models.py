@@ -87,6 +87,19 @@ class Payment(db.Model):
     transaction_ref = db.Column(db.String(200))
 
 
+class LoginActivity(db.Model):
+    __tablename__ = "login_activity"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    success = db.Column(db.Boolean, nullable=False)
+    ip_address = db.Column(db.String(50))
+    user_agent = db.Column(db.String(300))
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+
+    user = db.relationship("User", backref="login_activity", lazy=True)
+
+
 class Feedback(db.Model):
     __tablename__ = "feedback"
     id = db.Column(db.Integer, primary_key=True)

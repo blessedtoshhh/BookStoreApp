@@ -1,9 +1,17 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User
+from models import db, User, LoginActivity
 
 auth_bp = Blueprint("auth", __name__)
+
+
+def _get_ip():
+    return request.headers.get("X-Forwarded-For", request.remote_addr or "unknown").split(",")[0].strip()
+
+
+def _get_ua():
+    return (request.headers.get("User-Agent") or "")[:300]
 
 
 @auth_bp.route("/register", methods=["POST"])
@@ -32,9 +40,46 @@ def login():
     if not data or not data.get("email") or not data.get("password"):
         return jsonify({"error": "email and password are required"}), 400
 
-    user = User.query.filter_by(email=data["email"]).first()
-    if not user or not check_password_hash(user.password_hash, data["password"]):
+    email = data["email"]
+    user = User.query.filter_by(email=email).first()
+    success = bool(user and check_password_hash(user.password_hash, data["password"]))
+
+    activity = LoginActivity(
+        email=email,
+        user_id=user.id if success else None,
+        success=success,
+        ip_address=_get_ip(),
+        user_agent=_get_ua(),
+    )
+    db.session.add(activity)
+    db.session.commit()
+
+    if not success:
         return jsonify({"error": "Invalid credentials"}), 401
 
     token = create_access_token(identity=str(user.id), additional_claims={"role": user.role})
     return jsonify({"token": token, "role": user.role}), 200
+
+
+@auth_bp.route("/login-activity", methods=["GET"])
+@jwt_required()
+def login_activity():
+    claims = get_jwt()
+    if claims.get("role") != "manager":
+        return jsonify({"error": "Managers only"}), 403
+
+    limit = min(int(request.args.get("limit", 200)), 500)
+    rows = (LoginActivity.query
+            .order_by(LoginActivity.timestamp.desc())
+            .limit(limit)
+            .all())
+
+    return jsonify([{
+        "id": r.id,
+        "email": r.email,
+        "user_name": r.user.name if r.user else None,
+        "success": r.success,
+        "ip_address": r.ip_address,
+        "user_agent": r.user_agent,
+        "timestamp": r.timestamp.strftime("%Y-%m-%d %H:%M:%S UTC"),
+    } for r in rows]), 200

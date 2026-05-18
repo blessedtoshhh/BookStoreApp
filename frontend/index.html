@@ -20,6 +20,7 @@
       <button onclick="showSection('inventory')" id="nav-inventory" class="hidden">Inventory</button>
       <button onclick="showSection('orders')" id="nav-orders" class="hidden">Orders</button>
       <button onclick="showSection('staff-feedback')" id="nav-staff-feedback" class="hidden">Manage Feedback</button>
+      <button onclick="showSection('login-activity')" id="nav-login-activity" class="hidden">Login Activity</button>
       <button onclick="logout()" id="nav-logout" class="hidden">Logout</button>
     </div>
   </nav>
@@ -145,6 +146,14 @@
         <button class="feedback-submit-btn" onclick="submitFeedback()">Submit Feedback</button>
         <p id="feedback-message-status" style="margin-top:0.8rem;"></p>
       </div>
+    </section>
+
+    <!-- Manager: Login Activity -->
+    <section id="login-activity" class="section hidden">
+      <h2>Login Activity</h2>
+      <p style="color:#555;margin-bottom:1rem;">Most recent 200 login attempts across all accounts.</p>
+      <div id="login-activity-stats" style="margin-bottom:1.2rem;"></div>
+      <div id="login-activity-list"></div>
     </section>
 
     <!-- Staff: View Feedback -->
