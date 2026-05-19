@@ -1,3 +1,5 @@
+import csv
+import os
 from app import app
 from models import db, User, Author, Book
 from werkzeug.security import generate_password_hash
@@ -54,6 +56,32 @@ with app.app_context():
             print(f"Added book: {b['title']}")
         else:
             print(f"Already exists: {b['title']}")
+
+    # Books from CSV
+    csv_path = os.path.join(os.path.dirname(__file__), "books.csv")
+    if os.path.exists(csv_path):
+        with open(csv_path, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            csv_added = 0
+            for row in reader:
+                isbn = row["isbn"].strip()
+                if isbn and Book.query.filter_by(isbn=isbn).first():
+                    continue
+                author = Author.query.filter_by(name=row["author"].strip()).first()
+                if not author:
+                    author = Author(name=row["author"].strip())
+                    db.session.add(author)
+                    db.session.flush()
+                db.session.add(Book(
+                    title=row["title"].strip(),
+                    author_id=author.id,
+                    isbn=isbn,
+                    price=float(row["price_usd"]),
+                    stock_quantity=int(row["stock_quantity"]),
+                    category=row["genre"].strip(),
+                ))
+                csv_added += 1
+        print(f"Added {csv_added} books from books.csv")
 
     db.session.commit()
     print("\nDone.")
