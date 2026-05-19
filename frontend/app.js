@@ -57,7 +57,7 @@ async function loadBooks(query = "", type = "all") {
 
         <div class="book-info">
         <strong>${b.title}</strong><br/>
-        by ${b.author_name}<br/>
+        by ${b.author}<br/>
         $${b.price.toFixed(2)} &mdash; ${b.stock_quantity} in stock
       </div>
 
