@@ -102,3 +102,35 @@ def _serialize(book):
         "category": book.category,
         "description": book.description,
     }
+
+@books_bp.route("/<int:book_id>/receive-stock", methods=["POST"])
+@jwt_required()
+def receive_vendor_stock(book_id):
+
+    employee_check = _require_employee()
+    if employee_check:
+        return employee_check
+
+    data = request.get_json() or {}
+    quantity_received = data.get("quantity_received")
+
+    if not isinstance(quantity_received, int) or quantity_received <= 0:
+        return jsonify({
+            "error": "quantity_received must be a positive whole number"
+        }), 400
+
+    book = Book.query.get(book_id)
+
+    if not book:
+        return jsonify({"error": "Book not found"}), 404
+
+    book.stock_quantity += quantity_received
+    db.session.commit()
+
+    return jsonify({
+        "message": "Vendor stock received successfully",
+        "book_id": book.id,
+        "title": book.title,
+        "quantity_received": quantity_received,
+        "new_stock_quantity": book.stock_quantity
+    }), 200
