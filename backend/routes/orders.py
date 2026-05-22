@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from models import db, Cart, CartItem, Order, OrderItem, Payment, Book, ActivityLog
+from datetime import datetime, timezone
 
 orders_bp = Blueprint("orders", __name__)
 
@@ -99,6 +100,95 @@ def get_orders():
     else:
         orders = Order.query.filter_by(user_id=user_id).all()
     return jsonify([_serialize_order(o) for o in orders]), 200
+
+
+@orders_bp.route("/sales-report", methods=["GET"])
+@jwt_required()
+def sales_report():
+    claims = get_jwt()
+    if claims.get("role") not in ("employee", "manager"):
+        return jsonify({"error": "Access denied."}), 403
+
+    start_str = request.args.get("start")
+    end_str = request.args.get("end")
+
+    query = Order.query.filter_by(status="paid")
+    try:
+        if start_str:
+            query = query.filter(Order.created_at >= datetime.strptime(start_str, "%Y-%m-%d"))
+        if end_str:
+            end_dt = datetime.strptime(end_str, "%Y-%m-%d").replace(hour=23, minute=59, second=59)
+            query = query.filter(Order.created_at <= end_dt)
+    except ValueError:
+        return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+
+    orders = query.order_by(Order.created_at.desc()).all()
+
+    total_revenue = sum(o.total for o in orders)
+    total_orders = len(orders)
+    total_items = sum(sum(i.quantity for i in o.items) for o in orders)
+
+    book_sales = {}
+    for o in orders:
+        for i in o.items:
+            if i.book_id not in book_sales:
+                book_sales[i.book_id] = {"title": i.book.title, "author": i.book.author.name, "quantity": 0, "revenue": 0.0}
+            book_sales[i.book_id]["quantity"] += i.quantity
+            book_sales[i.book_id]["revenue"] += round(i.price_at_purchase * i.quantity, 2)
+
+    top_books = sorted(book_sales.values(), key=lambda x: x["quantity"], reverse=True)
+
+    return jsonify({
+        "summary": {
+            "total_revenue": round(total_revenue, 2),
+            "total_orders": total_orders,
+            "total_items_sold": total_items,
+        },
+        "top_books": top_books,
+        "orders": [_serialize_order(o) for o in orders],
+    }), 200
+
+
+@orders_bp.route("/inventory-report", methods=["GET"])
+@jwt_required()
+def inventory_report():
+    claims = get_jwt()
+    if claims.get("role") not in ("employee", "manager"):
+        return jsonify({"error": "Access denied."}), 403
+
+    category = request.args.get("category", "").strip()
+    stock_filter = request.args.get("stock", "all")
+
+    from models import Author
+    query = Book.query.join(Author)
+    if category:
+        query = query.filter(Book.category.ilike(f"%{category}%"))
+    if stock_filter == "low":
+        query = query.filter(Book.stock_quantity > 0, Book.stock_quantity <= 3)
+    elif stock_filter == "out":
+        query = query.filter(Book.stock_quantity == 0)
+    elif stock_filter == "in":
+        query = query.filter(Book.stock_quantity > 3)
+
+    books = query.order_by(Book.stock_quantity.asc()).all()
+    total_value = sum(b.price * b.stock_quantity for b in books)
+
+    return jsonify({
+        "summary": {
+            "total_titles": len(books),
+            "total_units": sum(b.stock_quantity for b in books),
+            "total_value": round(total_value, 2),
+        },
+        "books": [{
+            "id": b.id,
+            "title": b.title,
+            "author": b.author.name,
+            "category": b.category or "N/A",
+            "price": b.price,
+            "stock_quantity": b.stock_quantity,
+            "stock_value": round(b.price * b.stock_quantity, 2),
+        } for b in books],
+    }), 200
 
 
 def _get_or_create_cart(user_id):

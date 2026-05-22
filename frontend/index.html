@@ -19,6 +19,7 @@
       <button onclick="showSection('login')" id="nav-login">Login</button>
       <button onclick="showSection('inventory')" id="nav-inventory" class="hidden">Inventory</button>
       <button onclick="showSection('orders')" id="nav-orders" class="hidden">Orders</button>
+      <button onclick="showSection('reports')" id="nav-reports" class="hidden">Reports</button>
       <button onclick="showSection('staff-feedback')" id="nav-staff-feedback" class="hidden">Manage Feedback</button>
       <button onclick="showSection('login-activity')" id="nav-login-activity" class="hidden">Login Activity</button>
       <button onclick="showSection('activity-log')" id="nav-activity-log" class="hidden">Activity Log</button>
@@ -146,6 +147,55 @@
 
         <button class="feedback-submit-btn" onclick="submitFeedback()">Submit Feedback</button>
         <p id="feedback-message-status" style="margin-top:0.8rem;"></p>
+      </div>
+    </section>
+
+    <!-- Employee: Reports -->
+    <section id="reports" class="section hidden">
+      <div class="report-toolbar no-print">
+        <h2 style="margin:0;">Reports</h2>
+        <div class="report-actions">
+          <button onclick="exportReportCSV()" class="btn-export">&#8595; Export CSV</button>
+          <button onclick="window.print()" class="btn-print">&#128438; Print</button>
+        </div>
+      </div>
+
+      <!-- Report tabs -->
+      <div class="report-tabs no-print">
+        <button class="report-tab active" id="tab-sales" onclick="switchReportTab('sales')">Sales</button>
+        <button class="report-tab" id="tab-inventory" onclick="switchReportTab('inventory')">Inventory</button>
+      </div>
+
+      <!-- Sales report -->
+      <div id="report-sales">
+        <div class="report-filters no-print">
+          <label>From: <input type="date" id="sales-start" /></label>
+          <label>To: <input type="date" id="sales-end" /></label>
+          <button onclick="loadSalesReport()">Apply</button>
+          <button onclick="clearSalesFilter()">Clear</button>
+        </div>
+        <div id="sales-summary"></div>
+        <div id="sales-top-books"></div>
+        <div id="sales-orders"></div>
+      </div>
+
+      <!-- Inventory report -->
+      <div id="report-inventory" class="hidden">
+        <div class="report-filters no-print">
+          <label>Category: <input type="text" id="inv-category" placeholder="e.g. Fiction" /></label>
+          <label>Stock:
+            <select id="inv-stock-filter">
+              <option value="all">All</option>
+              <option value="in">In Stock</option>
+              <option value="low">Low Stock (≤3)</option>
+              <option value="out">Out of Stock</option>
+            </select>
+          </label>
+          <button onclick="loadInventoryReport()">Apply</button>
+          <button onclick="clearInventoryFilter()">Clear</button>
+        </div>
+        <div id="inventory-summary"></div>
+        <div id="inventory-table"></div>
       </div>
     </section>
 

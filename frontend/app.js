@@ -14,6 +14,7 @@ function showSection(id) {
   if (id === "reviews") loadPublicReviews();
   if (id === "login-activity") loadLoginActivity();
   if (id === "activity-log") loadActivityLog();
+  if (id === "reports") { loadSalesReport(); }
 }
 
 function applyRoleUI() {
@@ -26,6 +27,7 @@ function applyRoleUI() {
   document.getElementById("nav-staff-feedback").classList.toggle("hidden", !isEmployee);
   document.getElementById("nav-login-activity").classList.toggle("hidden", userRole !== "manager");
   document.getElementById("nav-activity-log").classList.toggle("hidden", userRole !== "manager");
+  document.getElementById("nav-reports").classList.toggle("hidden", !isEmployee);
 }
 
 function logout() {
@@ -562,6 +564,165 @@ async function loadPublicReviews() {
       ` : ""}
     </div>
   `).join("");
+}
+
+// --- Reports ---
+
+let currentReportTab = "sales";
+let lastSalesData = null;
+let lastInventoryData = null;
+
+function switchReportTab(tab) {
+  currentReportTab = tab;
+  document.getElementById("report-sales").classList.toggle("hidden", tab !== "sales");
+  document.getElementById("report-inventory").classList.toggle("hidden", tab !== "inventory");
+  document.getElementById("tab-sales").classList.toggle("active", tab === "sales");
+  document.getElementById("tab-inventory").classList.toggle("active", tab === "inventory");
+  if (tab === "inventory" && !lastInventoryData) loadInventoryReport();
+}
+
+async function loadSalesReport() {
+  if (!token) return;
+  const start = document.getElementById("sales-start").value;
+  const end = document.getElementById("sales-end").value;
+  let url = `${API}/store/sales-report`;
+  const params = [];
+  if (start) params.push(`start=${start}`);
+  if (end) params.push(`end=${end}`);
+  if (params.length) url += "?" + params.join("&");
+
+  const res = await fetch(url, { headers: authHeaders() });
+  if (!res.ok) return;
+  const data = await res.json();
+  lastSalesData = data;
+
+  const { summary, top_books, orders } = data;
+
+  document.getElementById("sales-summary").innerHTML = `
+    <div class="report-summary-cards">
+      <div class="summary-card"><span class="summary-val">$${summary.total_revenue.toFixed(2)}</span><span class="summary-label">Total Revenue</span></div>
+      <div class="summary-card"><span class="summary-val">${summary.total_orders}</span><span class="summary-label">Orders</span></div>
+      <div class="summary-card"><span class="summary-val">${summary.total_items_sold}</span><span class="summary-label">Items Sold</span></div>
+    </div>
+  `;
+
+  document.getElementById("sales-top-books").innerHTML = top_books.length ? `
+    <h3 class="report-section-title">Top Selling Books</h3>
+    <table class="activity-table">
+      <thead><tr><th>Title</th><th>Author</th><th>Units Sold</th><th>Revenue</th></tr></thead>
+      <tbody>
+        ${top_books.map(b => `
+          <tr>
+            <td>${escapeHtml(b.title)}</td>
+            <td>${escapeHtml(b.author)}</td>
+            <td>${b.quantity}</td>
+            <td>$${b.revenue.toFixed(2)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  ` : "";
+
+  document.getElementById("sales-orders").innerHTML = orders.length ? `
+    <h3 class="report-section-title">Order History</h3>
+    <table class="activity-table">
+      <thead><tr><th>Order #</th><th>Date</th><th>Items</th><th>Total</th></tr></thead>
+      <tbody>
+        ${orders.map(o => `
+          <tr>
+            <td>#${o.order_id}</td>
+            <td>${new Date(o.created_at).toLocaleDateString()}</td>
+            <td>${o.items.map(i => `${escapeHtml(i.title)} x${i.quantity}`).join(", ")}</td>
+            <td>$${o.total.toFixed(2)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  ` : `<p style="color:#888;margin-top:1rem;">No orders found for this period.</p>`;
+}
+
+function clearSalesFilter() {
+  document.getElementById("sales-start").value = "";
+  document.getElementById("sales-end").value = "";
+  loadSalesReport();
+}
+
+async function loadInventoryReport() {
+  if (!token) return;
+  const category = document.getElementById("inv-category").value;
+  const stock = document.getElementById("inv-stock-filter").value;
+  let url = `${API}/store/inventory-report`;
+  const params = [];
+  if (category) params.push(`category=${encodeURIComponent(category)}`);
+  if (stock && stock !== "all") params.push(`stock=${stock}`);
+  if (params.length) url += "?" + params.join("&");
+
+  const res = await fetch(url, { headers: authHeaders() });
+  if (!res.ok) return;
+  const data = await res.json();
+  lastInventoryData = data;
+
+  const { summary, books } = data;
+
+  document.getElementById("inventory-summary").innerHTML = `
+    <div class="report-summary-cards">
+      <div class="summary-card"><span class="summary-val">${summary.total_titles}</span><span class="summary-label">Titles</span></div>
+      <div class="summary-card"><span class="summary-val">${summary.total_units}</span><span class="summary-label">Total Units</span></div>
+      <div class="summary-card"><span class="summary-val">$${summary.total_value.toFixed(2)}</span><span class="summary-label">Inventory Value</span></div>
+    </div>
+  `;
+
+  document.getElementById("inventory-table").innerHTML = books.length ? `
+    <h3 class="report-section-title">Inventory Status</h3>
+    <table class="activity-table">
+      <thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Price</th><th>Stock</th><th>Value</th></tr></thead>
+      <tbody>
+        ${books.map(b => `
+          <tr>
+            <td>${escapeHtml(b.title)}</td>
+            <td>${escapeHtml(b.author)}</td>
+            <td>${escapeHtml(b.category)}</td>
+            <td>$${b.price.toFixed(2)}</td>
+            <td><span class="${b.stock_quantity === 0 ? "badge-fail" : b.stock_quantity <= 3 ? "badge-low" : "badge-success"} activity-badge">${b.stock_quantity}</span></td>
+            <td>$${b.stock_value.toFixed(2)}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  ` : `<p style="color:#888;margin-top:1rem;">No books match this filter.</p>`;
+}
+
+function clearInventoryFilter() {
+  document.getElementById("inv-category").value = "";
+  document.getElementById("inv-stock-filter").value = "all";
+  loadInventoryReport();
+}
+
+function exportReportCSV() {
+  if (currentReportTab === "sales" && lastSalesData) {
+    const rows = [["Order #", "Date", "Title", "Qty", "Price", "Total"]];
+    for (const o of lastSalesData.orders) {
+      for (const i of o.items) {
+        rows.push([o.order_id, new Date(o.created_at).toLocaleDateString(), i.title, i.quantity, i.price_at_purchase.toFixed(2), o.total.toFixed(2)]);
+      }
+    }
+    _downloadCSV(rows, "sales_report.csv");
+  } else if (currentReportTab === "inventory" && lastInventoryData) {
+    const rows = [["Title", "Author", "Category", "Price", "Stock", "Value"]];
+    for (const b of lastInventoryData.books) {
+      rows.push([b.title, b.author, b.category, b.price.toFixed(2), b.stock_quantity, b.stock_value.toFixed(2)]);
+    }
+    _downloadCSV(rows, "inventory_report.csv");
+  }
+}
+
+function _downloadCSV(rows, filename) {
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
 }
 
 // --- Manager: Activity Log ---
