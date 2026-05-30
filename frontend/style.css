@@ -1,14 +1,14 @@
 :root {
-  --bg: #f7f5f0;
-  --text: #1f1f1f;
-  --muted: #6b6b6b;
+  --bg: #121212;
+  --text: #e8e3db;
+  --muted: #a6a09a;
 
-  --primary: #2f2a24;
-  --accent: #6b1f2b;
-  --highlight: #3d5a40;
+  --primary: #2b1d17;
+  --accent: #7b2d26;
+  --highlight: #b08d57;
 
-  --card: #ffffff; 
-  --border: #e6e0d6;
+  --card: #1e1e1e; 
+  --border: #343434;
 }
 
 * {
@@ -29,36 +29,37 @@ h1, h2, h3 {
 
 
 header {
-  background-image:
-    linear-gradient(
-      rgba(0,0,0,0.55),
-      rgba(0,0,0,0.55)
-    ),
-    url("images/Header image.jpg");
+  background: #181818;
+  border-bottom: 1px solid #343434;
+  padding: 1rem 2rem;  
+}
 
-  background-size: cover;
-  background-position: center;
-
-
-  color: white;
-  padding: 2rem;
-
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; 
+  gap: 1rem; 
+}
 
-  min-height: 220px;
 
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #d4af37;
 }
 
 header button {
-  background: #3498db;
+  background: #7b2d26;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
+  transition: 0.2s ease; 
 }
 
 header .logo { 
@@ -66,13 +67,13 @@ header .logo {
   font-size: 2.8rem;
   font-weight: 700;
   letter-spacing: 1px;
-  color: white;
+  color: #d4af37;
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 
 header button:hover {
-  background: #2980b9;
+  background: #9b3c32;
 }
 
 main {
@@ -82,11 +83,12 @@ main {
 }
 
 .section {
-  background: white;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
   padding: 1.5rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem; 
 }
 
 
@@ -100,11 +102,15 @@ h2 {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea,
+select {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  background: #252525;
+  color: var(--text);
+  border: 1px solid #444;
   border-radius: 4px;
 }
 
@@ -131,8 +137,8 @@ input[type="password"] {
 }
 
 .book-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: #1b1b1b;
+  border: 1px solid #343434;
   border-radius: 14px;
   padding: 16px;
   display: flex;
@@ -150,7 +156,7 @@ input[type="password"] {
 .book-card strong {
   font-family: 'Playfair Display', serif;
   font-size: 16px;
-  color: var(--primary);
+  color: var(--highlight);
 }
 
 .book-card div {
@@ -161,7 +167,7 @@ input[type="password"] {
 
 
 .book-card button {
-  background: var(--accent);
+  background: #7b2d26;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -172,8 +178,7 @@ input[type="password"] {
 }
 
 .book-card button:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
+  background: #9b3c32;
 }
 
 .book-card button:disabled {
@@ -189,11 +194,11 @@ input[type="password"] {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #343434;
 }
 
 button[onclick="checkout()"] {
-  background: #2c3e50;
+  background: #7b2d26;
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -203,10 +208,11 @@ button[onclick="checkout()"] {
 }
 
 .search-bar select {
+  background: #252525;
+  color: var(--text);
+  border: 1px solid #444;
   padding: 0.5rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
-  background: white;
   cursor: pointer;
 }
 
@@ -229,7 +235,8 @@ button[onclick="checkout()"] {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background: white;
+  background: #252525;
+  color: 1px solid #444;
   margin-bottom: 0.2rem;
   font-size: 1rem;
 }
@@ -252,7 +259,7 @@ button[onclick="checkout()"] {
 .star-rating-group label {
   display: block;
   font-weight: bold;
-  color: #444;
+  color: var(--text);
   margin-bottom: 0.4rem;
 }
 
@@ -281,7 +288,7 @@ button[onclick="checkout()"] {
 
 .feedback-submit-btn {
   margin-top: 1.2rem;
-  background: #2c3e50;
+  background: #7b2d26;
   color: white;
   border: none;
   padding: 0.65rem 1.4rem;
@@ -318,8 +325,8 @@ button[onclick="checkout()"] {
 }
 
 .feedback-card {
-  background: white;
-  border: 1px solid #e5e5e5;
+  background: #1b1b1b;
+  border: 1px solid #343434;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 0.9rem;
@@ -514,8 +521,8 @@ button[onclick="checkout()"] {
 }
 
 .review-card {
-  background: white;
-  border: 1px solid #e8e8e8;
+  background: #1b1b1b;
+  border: 1px solid #343434;
   border-radius: 10px;
   padding: 1.1rem 1.2rem;
   margin-bottom: 1rem;
@@ -607,7 +614,7 @@ button[onclick="checkout()"] {
 .btn-actioned { background: #a9dfbf; color: #1a5932; }
 .btn-actioned.btn-active { background: #1e8449; color: white; }
 .btn-reset { background: #f2f3f4; color: #555; }
-.btn-save-note { background: #3498db; color: white; }
+.btn-save-note { background: #7b2d26; color: white; }
 
 .activity-table {
   width: 100%;
@@ -622,9 +629,9 @@ button[onclick="checkout()"] {
 }
 .activity-table td {
   padding: 0.55rem 0.8rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #343434;
 }
-.activity-table tr:nth-child(even) td { background: #f8f9fa; }
+.activity-table tr:nth-child(even) td { background: #1a1a1a; }
 .activity-badge {
   display: inline-block;
   padding: 0.2rem 0.6rem;
@@ -656,7 +663,7 @@ button[onclick="checkout()"] {
   font-weight: 600;
 }
 .btn-export { background: #27ae60; color: white; }
-.btn-print  { background: #2c3e50; color: white; }
+.btn-print  { background: #7b2d26; color: white; }
 .report-tabs {
   display: flex;
   gap: 0.5rem;
@@ -685,7 +692,7 @@ button[onclick="checkout()"] {
   border-radius: 6px;
 }
 .report-filters label { font-size: 0.9rem; color: #444; display: flex; align-items: center; gap: 0.4rem; }
-.report-filters input, .report-filters select { padding: 0.3rem 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; }
+.report-filters input, .report-filters select { background: #252525; color: var(--text); padding: 0.3rem 0.5rem; border: 1px solid #444; border-radius: 4px; font-size: 0.9rem; }
 .report-summary-cards {
   display: flex;
   gap: 1rem;
