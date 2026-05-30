@@ -1,101 +1,101 @@
 book_id,title,author,genre,publisher,price_usd,stock_quantity,rating,publication_year,isbn
-1,Care service,Virginia Stevens,Technology,Simon & Schuster,42.71,114,4.0,1998,978-0-417-07071-1
-2,Including cup,James Clark,History,Simon & Schuster,45.49,51,3.3,2019,978-1-00-055043-6
-3,Record,Sydney Williams,Thriller,Macmillan,15.32,149,3.9,2011,978-0-12-905071-1
-4,Eye report believe over,Christina Snyder,History,Macmillan,20.35,92,3.9,1996,978-0-427-55008-1
-5,Onto grow,Nathan Robles,Science Fiction,Simon & Schuster,13.12,118,3.4,2017,978-1-61227-639-7
-6,Security collection east,Diana Young,Technology,Macmillan,46.7,52,3.7,2019,978-0-02-559049-6
-7,Your college can century,Randy Tapia,Fiction,Macmillan,45.84,97,4.6,2011,978-1-77702-158-0
-8,Learn add from mission perhaps,Alexis Smith,Self-Help,Hachette Book Group,9.88,124,3.2,2001,978-1-09-638535-6
-9,Final type indeed model who,Dawn Turner,History,Hachette Book Group,17.49,17,3.2,1995,978-1-873320-42-6
-10,Require you myself us take,Michael Cross,Fiction,Macmillan,49.31,95,3.5,2009,978-0-8097-6624-6
-11,Young significant month,Stefanie Nunez,Self-Help,Macmillan,32.4,0,4.5,2019,978-1-342-90150-7
-12,Choice against firm,Brittany Evans,Fantasy,Penguin Random House,43.01,89,3.7,2013,978-1-68093-210-2
-13,Drug sort,Rebecca Green,History,Simon & Schuster,23.94,41,3.2,2019,978-1-61156-973-5
-14,Mission focus various,John Winters,Technology,Macmillan,32.49,47,4.7,2001,978-0-681-26380-2
-15,They list action,Cheryl Shaffer,Fantasy,Penguin Random House,42.06,63,4.2,2013,978-0-7858-8898-7
-16,Lawyer whole,Carrie Owens,Technology,Penguin Random House,29.46,95,3.1,2002,978-1-61863-495-5
-17,Reveal avoid you,Joshua Roberts,Science Fiction,Simon & Schuster,35.63,49,4.3,2021,978-0-906663-02-8
-18,Bad use reveal education,Patricia Miller,Mystery,Hachette Book Group,32.93,47,3.0,1998,978-1-338-84694-2
-19,Your season education color,Kayla White,Thriller,Hachette Book Group,38.14,42,4.7,2004,978-0-242-31005-1
-20,Current threat,Donald Diaz,Self-Help,Hachette Book Group,10.32,63,3.8,2008,978-0-363-75218-1
-21,Late development property goal,Francisco Bennett,Biography,Simon & Schuster,48.84,49,4.6,2026,978-0-529-70735-2
-22,Lead nature,Jessica Moreno,Technology,Penguin Random House,22.63,48,3.2,2000,978-0-383-72621-6
-23,When,Leslie Brown,Biography,Hachette Book Group,11.67,150,3.9,2010,978-1-69116-663-3
-24,Laugh world,Christian White,Thriller,Macmillan,47.02,16,4.6,2021,978-1-332-32550-4
-25,Evidence time color and,Jason Diaz,Science Fiction,Macmillan,10.18,28,4.4,2000,978-1-80798-525-7
-26,Four soldier,Jennifer Hayes,Fantasy,Macmillan,15.39,81,3.2,2006,978-0-609-36577-9
-27,Always one,Dana Jones,Technology,HarperCollins,10.73,8,4.4,2010,978-0-04-973969-7
-28,Situation age necessary event sit,Rhonda Payne MD,Thriller,Simon & Schuster,39.73,113,4.9,2012,978-0-949215-46-8
-29,Shake,Kimberly Gonzalez,Biography,Simon & Schuster,47.2,10,3.2,2006,978-0-8306-4246-5
-30,Brother too,Rhonda Hall,History,Simon & Schuster,11.18,92,4.2,2002,978-1-220-60570-1
-31,Others attorney,Logan Franco,Fantasy,Penguin Random House,26.66,80,4.2,2025,978-1-337-75412-5
-32,Player evidence,Jane Marsh,Science Fiction,Macmillan,15.6,51,3.8,2023,978-1-01-733016-8
-33,Letter in human significant,James Lowe,Biography,Simon & Schuster,18.39,3,4.6,2025,978-0-424-56032-8
-34,Exactly respond,Ashley Davis,Self-Help,Penguin Random House,10.95,60,4.0,2017,978-1-77814-519-3
-35,Least game,Samantha Fleming,Self-Help,Simon & Schuster,23.15,108,4.9,2020,978-1-65858-141-7
-36,Area wrong behind family,Vincent Pearson,Self-Help,Simon & Schuster,32.22,100,4.1,2009,978-1-78315-282-7
-37,Hotel team law without issue,Daniel Jones,Thriller,HarperCollins,44.28,134,3.7,1999,978-0-456-00455-5
-38,Stand building explain about level,Stacie Lee,Mystery,Simon & Schuster,49.55,9,4.2,2018,978-0-949415-26-4
-39,Throughout hear population scene,Deborah Molina,Technology,HarperCollins,25.41,89,4.5,2013,978-1-4766-6783-6
-40,Cultural,Diana Weaver,Technology,Macmillan,39.27,112,3.9,2015,978-0-7901-4046-9
-41,Strategy successful nor magazine,Jenna Hunter,Thriller,Macmillan,36.23,134,3.7,2026,978-1-236-27760-2
-42,Memory court,Brandon Ryan,Fantasy,Penguin Random House,13.38,35,3.2,1997,978-1-4356-6590-3
-43,Us prepare,William Wolf,Science Fiction,HarperCollins,41.09,70,4.0,1998,978-1-274-17591-5
-44,Really issue woman,Kimberly Trevino,Thriller,Hachette Book Group,32.09,108,3.3,2014,978-0-596-39045-7
-45,Memory attention,Francis Snow,Biography,Simon & Schuster,23.8,94,4.0,2000,978-0-7281-3064-7
-46,Important,Kevin Mendoza,Technology,Penguin Random House,44.04,60,3.5,2020,978-1-03-158399-1
-47,Writer real beyond,Gregory Martinez,Romance,Macmillan,46.88,16,3.7,2003,978-0-02-515255-7
-48,Even thank owner key run,Pamela Greene,Self-Help,HarperCollins,22.74,129,3.7,2006,978-0-01-728054-1
-49,Nearly see,Timothy Jensen,Technology,Macmillan,42.86,108,3.9,2025,978-0-7579-0583-4
-50,Voice from season,Marcus Kelly,Fiction,HarperCollins,43.27,94,3.8,2018,978-1-55863-003-1
-51,Forget senior name,Holly Wall,Biography,Simon & Schuster,35.45,15,4.8,2021,978-1-5239-7483-2
-52,Hard method public and,Kaitlyn Hebert,Self-Help,Macmillan,18.88,44,3.2,2010,978-1-951553-05-0
-53,Red,Darlene Armstrong,Self-Help,HarperCollins,39.65,103,4.1,2009,978-0-397-23919-1
-54,Mrs middle main choice agent,John Cameron,Fiction,Simon & Schuster,26.89,0,4.1,2002,978-0-525-93038-9
-55,Five production,Donald Hernandez,Fantasy,Hachette Book Group,38.88,95,3.1,2025,978-1-62669-242-8
-56,Whole,Valerie Perez,Fantasy,Penguin Random House,11.23,92,3.8,2025,978-1-7325109-3-7
-57,Thing including factor,Susan Cowan,Technology,Hachette Book Group,9.6,80,4.6,2008,978-1-377-50526-8
-58,Site including,Daniel Owens,Self-Help,HarperCollins,36.73,50,3.8,2019,978-0-04-182496-4
-59,Social use,Vincent Floyd,Thriller,HarperCollins,41.73,81,4.8,2006,978-0-7667-1996-5
-60,Tell,Bradley Maldonado,History,Hachette Book Group,34.94,91,4.6,2026,978-0-432-43994-4
-61,Water race chair,Richard Gilbert,Self-Help,Hachette Book Group,40.57,46,3.5,2014,978-0-613-46480-2
-62,Near,Kirsten Conway,History,Hachette Book Group,14.75,135,3.1,2003,978-1-59149-281-8
-63,Time,Aaron Gutierrez,Fantasy,Simon & Schuster,49.52,109,3.9,2021,978-1-67973-360-4
-64,Arm something debate break,Tammy Jackson,Mystery,Simon & Schuster,23.47,68,4.4,2025,978-1-59956-609-2
-65,Effect nature wear,Danielle Lawrence,Self-Help,Simon & Schuster,28.63,93,3.7,2000,978-1-00-379725-8
-66,Record media eat,Troy Coleman,Fantasy,Macmillan,37.78,119,4.5,2015,978-1-59562-396-6
-67,System,Jordan Bowman,Thriller,Penguin Random House,37.02,41,4.6,2011,978-1-5465-3536-2
-68,Of,Ashley Sanchez,History,Macmillan,27.6,38,4.9,2014,978-1-253-89581-0
-69,These reason,Antonio Dunn,Technology,Simon & Schuster,12.07,96,4.3,2026,978-0-412-68968-0
-70,Occur start yet,John Thompson,Mystery,Simon & Schuster,18.22,68,3.3,2010,978-0-7490-6761-8
-71,Stand write physical,John Smith,Mystery,Penguin Random House,34.05,26,3.5,2018,978-1-5228-1109-1
-72,Operation quickly factor,Ashley Jones,Romance,Simon & Schuster,44.09,6,5.0,1997,978-1-55696-388-9
-73,Senior student democratic role,Elizabeth Jacobs,Biography,Penguin Random House,25.63,28,4.8,2004,978-1-77579-406-6
-74,Reason structure anyone,Angela Perez,History,Macmillan,20.98,93,3.5,2008,978-1-938681-65-3
-75,Yes happen party,Timothy Wood,Self-Help,Penguin Random House,46.95,20,4.8,1998,978-1-4123-7543-6
-76,West even,Nicholas Johnson,Romance,Hachette Book Group,45.15,62,4.9,2010,978-1-989029-64-0
-77,Pattern medical,Michelle Nguyen,Technology,HarperCollins,13.6,127,3.4,1999,978-1-162-25167-7
-78,Wall everything risk act,Douglas Frederick,Mystery,Penguin Random House,41.14,75,4.6,2022,978-1-4380-8340-7
-79,Sure energy,Julie Hayes,Science Fiction,Simon & Schuster,37.87,22,3.9,2021,978-1-01-969068-0
-80,Miss painting,Paul Walker,Self-Help,Penguin Random House,11.01,63,3.2,2014,978-1-926848-24-2
-81,Less home education health then,Betty Williams,Science Fiction,Hachette Book Group,23.83,41,4.3,2003,978-0-18-386739-3
-82,New build tax,Nicole Mendoza,Biography,Hachette Book Group,43.7,122,4.6,1998,978-0-02-352894-1
-83,Class seek item,Brian Abbott,Mystery,Macmillan,12.41,76,3.7,1995,978-0-437-42629-1
-84,Church reason Mr,Martin Woods,Biography,Penguin Random House,16.75,69,4.0,2001,978-0-16-987394-3
-85,House,David Wolf,Fiction,Penguin Random House,11.96,101,4.0,2026,978-0-7376-2470-0
-86,Machine nor,Sandra Moreno,Fantasy,Macmillan,36.38,132,3.8,2007,978-1-59018-321-2
-87,Relate experience activity heavy everybody money,Jessica Levine,Self-Help,Simon & Schuster,34.13,97,3.2,2025,978-1-74773-805-0
-88,Sure door size,Julie Ramirez,Biography,Hachette Book Group,33.36,106,4.3,1998,978-0-324-35208-5
-89,Treat,Ryan Anderson,Self-Help,Macmillan,31.39,80,3.3,2004,978-0-00-888218-1
-90,Game increase,Karen Cordova,Romance,HarperCollins,25.38,27,3.6,2007,978-0-498-07478-3
-91,Or fast wait whatever,Timothy Becker,History,Macmillan,43.39,53,3.9,2022,978-1-5326-5569-2
-92,Pay hotel,Victor Cherry,Fantasy,Simon & Schuster,18.21,82,4.2,2015,978-1-183-50877-4
-93,Small far state,Lindsey Nelson,Technology,HarperCollins,46.79,133,3.8,2020,978-1-250-35967-4
-94,Impact draw interview class look,Sharon Doyle,Fantasy,Penguin Random House,47.23,88,4.4,2013,978-0-06-205867-6
-95,Risk pass leader,Robert Haynes,Thriller,Penguin Random House,47.79,93,3.4,2013,978-0-18-954207-2
-96,Through though along task now into,Cindy Williams,History,Hachette Book Group,26.07,23,4.0,2017,978-0-8255-0448-8
-97,Stop shake if,James Parker,History,Hachette Book Group,26.91,37,3.4,2020,978-0-325-37314-0
-98,Generation message,Penny Davis,Biography,HarperCollins,49.0,145,3.5,2010,978-0-467-59862-3
-99,During catch,Daniel Edwards,Fiction,Simon & Schuster,40.98,52,3.7,2018,978-0-667-83457-6
-100,Benefit enter order,Shawn Allen,Science Fiction,HarperCollins,34.71,127,4.7,2022,978-1-60924-109-4
+1,Ficciones,Jorge Luis Borges,Fiction,,24.49,15,3.9,,9780802190734
+2,Great Sf Heinlein Bxs,Robert A. Heinlein,Fiction,,10.4,44,3.4,,9780425052167
+3,The Science Fiction Hall of Fame -- Volume One,Robert Silverberg,Fiction,,22.34,14,3.0,,9780999174067
+4,Wild seed,Octavia E. Butler,Fiction,,33.33,36,4.4,,9780575071452
+5,Smoke and Mirrors,Neil Gaiman,Fiction,,24.24,21,4.5,,9788498388046
+6,Trigger Warning,Neil Gaiman,Fiction,,27.53,0,4.9,,9780062369741
+7,An introduction to fiction,"Stanton, Robert",Fiction,,29.99,36,4.6,,9780030496905
+8,Cryptonomicon,Neal Stephenson,Fiction,,9.32,15,4.9,,9780060575489
+9,Hothouse,Brian W. Aldiss,Fiction,,26.66,21,3.7,,9781600103605
+10,Writing Fiction,Janet Burroway,Fiction,,15.7,30,3.6,,9780673523457
+11,The Things They Carried,Tim O'Brien,Fiction,,9.22,33,4.8,,9781491512517
+12,To your scattered bodies go,Philip José Farmer,Fiction,,17.31,1,3.4,,9780425050262
+13,Slan,A. E. van Vogt,Fiction,,34.56,40,3.5,,9780425029008
+14,The Sympathizer,Viet Thanh Nguyen,Fiction,,19.94,37,3.7,,9781336217560
+15,Collected Fictions,Jorge Luis Borges,Fiction,,31.46,6,4.2,,9780147714169
+16,Foundation,Isaac Asimov,Fiction,,9.34,44,3.4,,9782724222494
+17,The Overstory,Richard Powers,Fiction,,27.61,32,4.9,,9783596703128
+18,How to Write Best-Selling Fiction,Dean Koontz,Fiction,,14.09,36,3.3,,9780907657002
+19,What if?,Anne Bernays,Fiction,,29.95,3,3.8,,9780062700384
+20,Funhouse,Diane Hoh,Fiction,,25.71,47,4.0,,9780590765329
+21,Fragile Things,Neil Gaiman,Fiction,,28.67,24,3.4,,9780061244933
+22,The craft of fiction,Percy Lubbock,Fiction,,18.41,41,4.2,,9781015409163
+23,The Power,Naomi Alderman,Fiction,,28.89,49,4.8,,9788416859214
+24,Gold,Isaac Asimov,Fiction,,21.32,2,4.9,,9780061054099
+25,Leviathan,Paul Auster,Fiction,,28.24,43,3.2,,9788433906342
+26,Azadi,Arundhati Roy,Fiction,,34.66,30,4.5,,9780143460169
+27,The Foundation Trilogy,Isaac Asimov,Fiction,,22.17,46,4.9,,9785040033089
+28,Frenzied fiction,Stephen Leacock,Fiction,,27.48,16,3.5,,9781374881082
+29,El tesoro di Rapa Nui,Elisabetta Dami,Fiction,,31.47,3,4.0,,9781484457702
+30,Children's fiction in the hands of the translators,Göte Klingberg,Fiction,,21.76,19,3.9,,9789140051721
+31,100 Great Science Fiction Short Short Stories,Isaac Asimov,Fiction,,19.66,33,4.8,,9780380507337
+32,Blood Music,Greg Bear,Fiction,,34.06,2,4.5,,9780743444965
+33,Earthlight,Arthur C. Clarke,Fiction,,22.81,22,4.5,,9780345248886
+34,The language of the night,Ursula K. Le Guin,Fiction,,16.39,16,3.7,,9780060168353
+35,Nightwings,Robert Silverberg,Fiction,,33.28,35,4.1,,9781591760108
+36,Deathworld 1,Harry Harrison,Fiction,,32.31,8,4.5,,9798455258251
+37,Galapagos,Kurt Vonnegut,Fiction,,15.18,5,3.6,,9781501277054
+38,Killer fiction,G. J. Schaefer,Fiction,,17.78,50,3.7,,9781936239191
+39,Stranger Than Fiction,Chuck Palahniuk,Fiction,,17.52,36,4.1,,9788466339667
+40,Bagombo Snuff Box,Kurt Vonnegut,Fiction,,15.48,14,4.7,,9780425174463
+41,The rhetoric of fiction,Wayne C. Booth,Fiction,,29.85,28,4.1,,9780226065588
+42,Men of Iron,Howard Pyle,Fiction,,13.09,32,4.5,,9781722325152
+43,The fabulous riverboat,Philip José Farmer,Fiction,,21.71,19,3.3,,9780425037935
+44,Science fiction,Patrick Parrinder,Fiction,,15.61,47,4.7,,9781003163299
+45,Excession,Iain Banks,Fiction,,17.4,5,4.9,,9780356521671
+46,How to Write Science Fiction & Fantasy,Orson Scott Card,Fiction,,13.55,31,4.5,,9781582971032
+47,Axiomatic,Greg Egan,Fiction,,13.62,30,4.9,,9780752816500
+48,Pulp fiction,Quentin Tarantino,Fiction,,32.54,16,3.7,,9780571175468
+49,"Literature--An Introduction to Fiction, Poetry, Drama and Writing--Eleventh Edition","Kennedy, X. & Gioia, D.",Fiction,,33.01,12,4.8,,9780205751808
+50,The Mysterious Affair at Styles,Agatha Christie,Mystery,,19.24,27,4.7,,9781717190338
+51,A Caribbean Mystery,Agatha Christie,Mystery,,12.1,29,3.0,,9780060736439
+52,The Mystery of the Blue Train,Agatha Christie,Mystery,,31.59,22,4.6,,9780792769798
+53,The Red House Mystery,A. A. Milne,Mystery,,29.28,44,4.9,,9780792708537
+54,The Mysterious Benedict Society (The Mysterious Benedict Society #1),Trenton Lee Stewart,Mystery,,31.57,5,3.5,,9780316057776
+55,The Bungalow Mystery,Carolyn Keene,Mystery,,34.53,10,4.8,,9780001604131
+56,The Sittaford Mystery,Agatha Christie,Mystery,,21.89,10,4.3,,9780007354597
+57,The Seven Dials Mystery,Agatha Christie,Mystery,,14.87,34,3.2,,9782702406847
+58,L'Île mystérieuse,Jules Verne,Mystery,,30.73,13,3.2,,9780785407218
+59,Mysterious skin,Scott Heim,Mystery,,28.24,33,4.4,,9780061664199
+60,The Moonstone Castle mystery,Carolyn Keene,Mystery,,14.84,26,3.9,,9781101077412
+61,The Mysterious Stranger,Mark Twain,Mystery,,33.6,34,4.0,,9781404320123
+62,Nancy's Mysterious Letter,Carolyn Keene,Mystery,,16.41,38,4.3,,9781933299440
+63,Mördare utan ansikte,Henning Mankell,Mystery,,27.08,16,3.2,,9788483835203
+64,Bunnicula,Deborah Howe,Mystery,,14.09,43,4.2,,9780812431124
+65,Death on the Nile,Agatha Christie,Mystery,,26.39,35,4.5,,9782702478417
+66,The Mystery at Lilac Inn,Carolyn Keene,Mystery,,32.88,44,4.8,,9780448195049
+67,The Paradise Mystery,Joseph Smith Fletcher,Mystery,,21.29,15,4.8,,9781428017047
+68,A Fatal Grace,Louise Penny,Mystery,,32.79,8,5.0,,9780786159284
+69,The mystery at the ski jump,Carolyn Keene,Mystery,,22.95,24,3.6,,9780006924937
+70,The Mysteries of Udolpho,Ann Radcliffe,Mystery,,28.22,2,4.7,,9798773041627
+71,Tales of Terror and Mystery,Arthur Conan Doyle,Mystery,,29.88,7,4.4,,9781549743726
+72,The mysterious Mr Quin,Agatha Christie,Mystery,,13.68,30,4.5,,9781504764087
+73,The Shore Road Mystery,Franklin W. Dixon,Mystery,,16.33,28,3.3,,9780448089065
+74,Mystery Ranch,Gertrude Chandler Warner,Mystery,,25.22,42,3.9,,9781484484784
+75,Snowbound Mystery,Gertrude Chandler Warner,Mystery,,13.13,36,4.8,,9780807575161
+76,The daffodil murder,Edgar Wallace,Mystery,,15.43,28,4.8,,9798414818410
+77,Sad Cypress,Agatha Christie,Mystery,,32.51,45,3.7,,9782702413401
+78,Asimov's Mysteries,Isaac Asimov,Mystery,,9.57,34,3.2,,9780385090636
+79,Five Little Pigs,Agatha Christie,Mystery,,33.87,44,4.8,,9780007527519
+80,The mystery of Edwin Drood,Charles Dickens,Mystery,,31.66,14,4.4,,9798462765094
+81,Gaudy night,Dorothy L. Sayers,Mystery,,29.01,42,3.8,,9798553722333
+82,The Technique of the Mystery Story,Carolyn Wells,Mystery,,14.04,29,4.8,,9798790547072
+83,Mystery Mile,Margery Allingham,Mystery,,32.27,40,4.5,,9780786701681
+84,Whose Body?,Dorothy L. Sayers,Mystery,,9.83,44,4.0,,9780816167227
+85,The Yellow House Mystery,Gertrude Chandler Warner,Mystery,,24.12,0,4.9,,9781453207604
+86,The Hollow,Agatha Christie,Mystery,,21.96,10,3.0,,9780002313247
+87,Motel of the mysteries,David Macaulay,Mystery,,22.52,8,3.8,,9780395284247
+88,The Hidden Window Mystery,Carolyn Keene,Mystery,,34.71,10,4.4,,9781101065914
+89,Mountain Top Mystery,Gertrude Chandler Warner,Mystery,,16.14,43,3.5,,9780590426787
+90,Murder in Mesopotamia,Agatha Christie,Mystery,,9.51,30,3.9,,9781405088411
+91,Blue Bay Mystery,Gertrude Chandler Warner,Mystery,,14.81,8,4.4,,9781453207758
+92,The Murder of Roger Ackroyd,Agatha Christie,Mystery,,23.64,35,3.3,,9789953300191
+93,The Mystery of Cloomber,Arthur Conan Doyle,Mystery,,27.03,31,4.8,,9798763804218
+94,Death in the Clouds,Agatha Christie,Mystery,,26.72,31,4.8,,9780061743115
+95,The Mysterious Rider,Zane Grey,Mystery,,22.52,36,4.2,,9781539455462
+96,The Mystery of the Burnt Cottage,Enid Blyton,Mystery,,21.61,11,4.2,,9798815183551
+97,The Big Four,Agatha Christie,Mystery,,31.3,28,4.3,,9780007157563
+98,The Scarlet Slipper Mystery,Carolyn Keene,Mystery,,17.77,22,3.3,,9781101077337
+99,Mike's Mystery,Gertrude Chandler Warner,Mystery,,15.33,11,3.8,,9781536441406
+100,Invisible Planets,Ken Liu,Science Fiction,,23.47,6,3.8,,9781784978648

@@ -54,7 +54,8 @@ async function loadBooks(query = "", type = "all") {
     <div class="book-card">
       <div class="book-cover">
         <img
-          src="${b.cover_url || 'https://via.placeholder.com/150x220?text=Book'}"
+          src="${b.isbn ? `https://covers.openlibrary.org/b/isbn/${b.isbn}-M.jpg` : 'https://via.placeholder.com/150x220?text=Book'}"
+          onerror="this.src='https://via.placeholder.com/150x220?text=Book'"
           alt="${b.title}"
         />
       </div>
