@@ -25,6 +25,7 @@
       <button onclick="showSection('login')" id="nav-login">Login</button>
       <button onclick="showSection('inventory')" id="nav-inventory" class="hidden">Inventory</button>
       <button onclick="showSection('orders')" id="nav-orders" class="hidden">Orders</button>
+      <button onclick="showSection('vendor-orders')" id="nav-vendor-orders" class="hidden">Vendor Orders</button>
       <button onclick="showSection('reports')" id="nav-reports" class="hidden">Reports</button>
       <button onclick="showSection('staff-feedback')" id="nav-staff-feedback" class="hidden">Manage Feedback</button>
       <button onclick="showSection('login-activity')" id="nav-login-activity" class="hidden">Login Activity</button>
@@ -101,6 +102,41 @@
     <section id="orders" class="section hidden">
       <h2>All Orders</h2>
       <div id="orders-list"></div>
+    </section>
+
+    <!-- Employee: Vendor Orders -->
+    <section id="vendor-orders" class="section hidden">
+      <h2>Vendor Orders</h2>
+
+      <div class="vendor-order-form no-print" style="margin-bottom:1.5rem;">
+        <h3 style="margin-bottom:0.8rem;">Place New Order</h3>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:flex-end;">
+          <div>
+            <label class="feedback-label" style="margin-top:0;">Book</label>
+            <select id="vo-book-id" style="width:220px;margin-bottom:0;"></select>
+          </div>
+          <div>
+            <label class="feedback-label" style="margin-top:0;">Vendor Name</label>
+            <input type="text" id="vo-vendor-name" placeholder="e.g. Penguin Random House" style="width:200px;margin-bottom:0;" />
+          </div>
+          <div>
+            <label class="feedback-label" style="margin-top:0;">Quantity</label>
+            <input type="number" id="vo-quantity" placeholder="Qty" min="1" style="width:80px;margin-bottom:0;" />
+          </div>
+          <button onclick="createVendorOrder()" style="background:#7b2d26;color:white;border:none;padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;">Place Order</button>
+        </div>
+        <p id="vo-message" style="margin-top:0.6rem;font-size:0.9rem;"></p>
+      </div>
+
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;" class="no-print">
+        <button class="filter-tab active" id="vo-tab-all" onclick="loadVendorOrders('all')">All</button>
+        <button class="filter-tab" id="vo-tab-Pending" onclick="loadVendorOrders('Pending')">Pending</button>
+        <button class="filter-tab" id="vo-tab-Partially Received" onclick="loadVendorOrders('Partially Received')">Partial</button>
+        <button class="filter-tab" id="vo-tab-Received" onclick="loadVendorOrders('Received')">Received</button>
+        <button class="filter-tab" id="vo-tab-Cancelled" onclick="loadVendorOrders('Cancelled')">Cancelled</button>
+      </div>
+
+      <div id="vendor-orders-list"></div>
     </section>
 
     <!-- Public: Reviews -->

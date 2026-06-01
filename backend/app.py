@@ -6,6 +6,7 @@ from routes.auth import auth_bp
 from routes.books import books_bp
 from routes.orders import orders_bp
 from routes.feedback import feedback_bp
+from routes.vendor_orders import vendor_orders_bp
 import os
 
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "frontend")
@@ -23,6 +24,7 @@ app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(books_bp, url_prefix="/books")
 app.register_blueprint(orders_bp, url_prefix="/store")
 app.register_blueprint(feedback_bp, url_prefix="/feedback")
+app.register_blueprint(vendor_orders_bp, url_prefix="/vendor-orders")
 
 @app.route("/")
 @app.route("/<path:path>")

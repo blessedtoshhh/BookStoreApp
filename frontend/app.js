@@ -15,6 +15,7 @@ function showSection(id) {
   if (id === "login-activity") loadLoginActivity();
   if (id === "activity-log") loadActivityLog();
   if (id === "reports") { loadSalesReport(); }
+  if (id === "vendor-orders") loadVendorOrders();
 }
 
 function applyRoleUI() {
@@ -28,6 +29,7 @@ function applyRoleUI() {
   document.getElementById("nav-login-activity").classList.toggle("hidden", userRole !== "manager");
   document.getElementById("nav-activity-log").classList.toggle("hidden", userRole !== "manager");
   document.getElementById("nav-reports").classList.toggle("hidden", !isEmployee);
+  document.getElementById("nav-vendor-orders").classList.toggle("hidden", !isEmployee);
 }
 
 function logout() {
@@ -565,6 +567,143 @@ async function loadPublicReviews() {
       ` : ""}
     </div>
   `).join("");
+}
+
+// --- Vendor Orders ---
+
+let currentVoFilter = "all";
+
+async function loadVendorOrders(statusFilter) {
+  if (!token) return;
+  if (statusFilter !== undefined) currentVoFilter = statusFilter;
+
+  // Update tab styles
+  ["all", "Pending", "Partially Received", "Received", "Cancelled"].forEach(s => {
+    const tab = document.getElementById(`vo-tab-${s}`);
+    if (tab) tab.classList.toggle("active", currentVoFilter === s);
+  });
+
+  // Populate book dropdown if empty
+  const bookSelect = document.getElementById("vo-book-id");
+  if (bookSelect && bookSelect.options.length === 0) {
+    const bRes = await fetch(`${API}/books/`);
+    const books = await bRes.json();
+    books.forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b.id;
+      opt.textContent = `${b.title} (${b.author})`;
+      bookSelect.appendChild(opt);
+    });
+  }
+
+  const url = currentVoFilter === "all"
+    ? `${API}/vendor-orders/`
+    : `${API}/vendor-orders/?status=${encodeURIComponent(currentVoFilter)}`;
+
+  const res = await fetch(url, { headers: authHeaders() });
+  if (!res.ok) return;
+  const orders = await res.json();
+  const listEl = document.getElementById("vendor-orders-list");
+
+  if (!orders.length) {
+    listEl.innerHTML = `<p style="color:#888;margin-top:1rem;">No orders found.</p>`;
+    return;
+  }
+
+  const statusColors = {
+    "Pending": "badge-action",
+    "Partially Received": "badge-low",
+    "Received": "badge-success",
+    "Cancelled": "badge-fail",
+  };
+
+  listEl.innerHTML = `
+    <table class="activity-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Book</th>
+          <th>Vendor</th>
+          <th>Ordered</th>
+          <th>Received</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th class="no-print">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${orders.map(o => `
+          <tr id="vo-row-${o.id}">
+            <td>${o.id}</td>
+            <td>${escapeHtml(o.book_title)}</td>
+            <td>${escapeHtml(o.vendor_name)}</td>
+            <td>${o.quantity_ordered}</td>
+            <td>${o.quantity_received}</td>
+            <td><span class="activity-badge ${statusColors[o.status] || ''}">${o.status}</span></td>
+            <td>${o.created_at}</td>
+            <td class="no-print" style="white-space:nowrap;">
+              ${o.status !== "Received" && o.status !== "Cancelled" ? `
+                <input type="number" id="vo-recv-${o.id}" min="1" placeholder="Qty" style="width:55px;padding:2px 4px;margin-right:4px;background:#252525;color:var(--text);border:1px solid #444;border-radius:4px;" />
+                <button onclick="receiveVendorOrder(${o.id})" style="background:#27ae60;color:white;border:none;padding:3px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">Receive</button>
+                <button onclick="cancelVendorOrder(${o.id})" style="background:#7b2d26;color:white;border:none;padding:3px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;margin-left:4px;">Cancel</button>
+              ` : "—"}
+            </td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+async function createVendorOrder() {
+  const bookId = parseInt(document.getElementById("vo-book-id").value);
+  const vendorName = document.getElementById("vo-vendor-name").value.trim();
+  const quantity = parseInt(document.getElementById("vo-quantity").value);
+  const msg = document.getElementById("vo-message");
+
+  if (!vendorName) { msg.style.color = "#e74c3c"; msg.textContent = "Vendor name is required."; return; }
+  if (!quantity || quantity <= 0) { msg.style.color = "#e74c3c"; msg.textContent = "Enter a valid quantity."; return; }
+
+  const res = await fetch(`${API}/vendor-orders/`, {
+    method: "POST",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ book_id: bookId, vendor_name: vendorName, quantity_ordered: quantity }),
+  });
+  const data = await res.json();
+  if (res.ok) {
+    msg.style.color = "#27ae60";
+    msg.textContent = `Order #${data.id} placed for ${data.quantity_ordered}x "${data.book_title}".`;
+    document.getElementById("vo-vendor-name").value = "";
+    document.getElementById("vo-quantity").value = "";
+    loadVendorOrders();
+  } else {
+    msg.style.color = "#e74c3c";
+    msg.textContent = data.error || "Failed to place order.";
+  }
+}
+
+async function receiveVendorOrder(orderId) {
+  const qty = parseInt(document.getElementById(`vo-recv-${orderId}`).value);
+  if (!qty || qty <= 0) { alert("Enter a valid quantity to receive."); return; }
+  const res = await fetch(`${API}/vendor-orders/${orderId}/receive`, {
+    method: "POST",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ quantity_received: qty }),
+  });
+  const data = await res.json();
+  if (res.ok) loadVendorOrders();
+  else alert(data.error || "Failed to receive order.");
+}
+
+async function cancelVendorOrder(orderId) {
+  if (!confirm("Cancel this vendor order?")) return;
+  const res = await fetch(`${API}/vendor-orders/${orderId}/cancel`, {
+    method: "POST",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  if (res.ok) loadVendorOrders();
+  else alert(data.error || "Failed to cancel order.");
 }
 
 // --- Reports ---
