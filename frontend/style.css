@@ -114,7 +114,8 @@ select {
 }
 
 .search-bar input {
-  flex: 1;
+  flex: 3;
+  min-width: 0;
 }
 
 #book-list {
@@ -207,6 +208,8 @@ button[onclick="checkout()"] {
   padding: 0.5rem;
   border-radius: 4px;
   cursor: pointer;
+  width: auto;
+  flex: 0 0 auto;
 }
 
 /* --- Feedback Form --- */
